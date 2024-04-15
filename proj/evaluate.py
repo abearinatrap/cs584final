@@ -36,6 +36,8 @@ for i in range(test):
 	obs = env.reset()
 	done = False
 	rewards = float('-inf')
+	print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!this is test {i} out of {test}")
+	print(f"succeeded: {model.get_env().get_attr('successGrasp')[0]} out of {i}")
 	while (not done):
 		action, _states = model.predict(obs)
 		obs, rewards, done, info= env.step(action)
