@@ -440,7 +440,11 @@ class sawyerEnv(gym.Env):
 		z_rdy = self.zInRange() # a boolean value that indicates the hand is in positon in z axis		
 		
 		###################### implement your function below ####################################################
-		reward = (1/dist) * 5
+		reward = (1/dist) 
+		if x_rdy: reward += 100
+		if y_rdy: reward += 100
+		if z_rdy: reward += 100
+
 		print(reward)
 
 		return reward
