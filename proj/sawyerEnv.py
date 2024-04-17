@@ -52,6 +52,11 @@ class sawyerEnv(gym.Env):
 		self.arm2hand = 0
 		self._p = p
 		self.num_envs = 1
+		self.badx = 0
+		self.bady = 0
+
+		self.fx = False
+		self.fy = False
 		if self._renders:
 			cid = p.connect(p.SHARED_MEMORY)
 			if (cid < 0):
@@ -440,11 +445,21 @@ class sawyerEnv(gym.Env):
 		z_rdy = self.zInRange() # a boolean value that indicates the hand is in positon in z axis		
 		
 		###################### implement your function below ####################################################
-		reward = (1/dist) * 5
-		if x_rdy: reward += 100
-		if y_rdy: reward += 100
+		reward = (1-dist)*200
+		if x_rdy:
+			self.fx = True
+		if y_rdy:
+			self.fy = True
 
-		print(reward)
+		if self.fx and not x_rdy:
+			self.badx = 100
+
+		if self.fy and not y_rdy:
+			self.bady = 100
+
+		print(f"{reward} {dist}")
+
+		reward -= self.badx + self.bady
 
 		return reward
 
