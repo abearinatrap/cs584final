@@ -54,9 +54,11 @@ class sawyerEnv(gym.Env):
 		self.num_envs = 1
 		self.badx = 0
 		self.bady = 0
+		self.badz = 0
 
 		self.fx = False
 		self.fy = False
+		self.fz = False
 		if self._renders:
 			cid = p.connect(p.SHARED_MEMORY)
 			if (cid < 0):
@@ -448,8 +450,13 @@ class sawyerEnv(gym.Env):
 		reward = (1-dist)*200
 		if x_rdy:
 			self.fx = True
+			self.badx = -100
 		if y_rdy:
 			self.fy = True
+			self.bady = -100
+
+		if self.fz and not (self.fx and self.fy):
+			self.badz = -200
 
 		if self.fx and not x_rdy:
 			self.badx = 100
@@ -459,7 +466,7 @@ class sawyerEnv(gym.Env):
 
 		print(f"{reward} {dist}")
 
-		reward -= self.badx + self.bady
+		reward -= self.badx + self.bady + self.badz
 
 		return reward
 
