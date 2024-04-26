@@ -52,13 +52,6 @@ class sawyerEnv(gym.Env):
 		self.arm2hand = 0
 		self._p = p
 		self.num_envs = 1
-		self.badx = 0
-		self.bady = 0
-		self.badz = 0
-
-		self.fx = False
-		self.fy = False
-		self.fz = False
 		if self._renders:
 			cid = p.connect(p.SHARED_MEMORY)
 			if (cid < 0):
@@ -448,30 +441,20 @@ class sawyerEnv(gym.Env):
 		
 		###################### implement your function below ####################################################
 		reward = (1-dist)*200
-		if x_rdy:
-			self.fx = True
-			self.badx = -100
-			print("correct x found")
-		if y_rdy:
-			self.fy = True
-			self.bady = -100
-			print("correct y found")
+		
+		x_dist = abs(obPos[0]-handPos[0])
+		y_dist = abs(obPos[1]-handPos[1])
+		z_dist = abs(obPos[2]-handPos[2])
 
-		if self.fz and not (self.fx and self.fy):
-			self.badz = -200
-			print("z before x and y")
+		threshold = 0.1
+		above_threshold = 0.3
+		if x_dist < threshold and y_dist < threshold and z_dist>threshold:
+			return reward
+		
+		return -reward
 
-		if self.fx and not x_rdy:
-			self.badx = 100
-			print("left x")
 
-		if self.fy and not y_rdy:
-			self.bady = 100
-			print("left y")
 
-		# print(f"{reward} {dist}")
-
-		reward -= self.badx + self.bady + self.badz
 
 		return reward
 
