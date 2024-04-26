@@ -446,15 +446,12 @@ class sawyerEnv(gym.Env):
 		y_dist = abs(obPos[1]-handPos[1])
 		z_dist = abs(obPos[2]-handPos[2])
 
-		threshold = 0.1
-		above_threshold = 0.3
-		if x_dist < threshold and y_dist < threshold and z_dist>threshold:
-			return reward
-		
-		return -reward
-
-
-
+		threshold = 0.05
+		above_threshold = 0.1
+		if x_dist < threshold and y_dist < threshold:
+			pass
+		else:
+			reward = -reward
 
 		return reward
 
