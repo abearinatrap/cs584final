@@ -451,20 +451,25 @@ class sawyerEnv(gym.Env):
 		if x_rdy:
 			self.fx = True
 			self.badx = -100
+			print("correct x found")
 		if y_rdy:
 			self.fy = True
 			self.bady = -100
+			print("correct y found")
 
 		if self.fz and not (self.fx and self.fy):
 			self.badz = -200
+			print("z before x and y")
 
 		if self.fx and not x_rdy:
 			self.badx = 100
+			print("left x")
 
 		if self.fy and not y_rdy:
 			self.bady = 100
+			print("left y")
 
-		print(f"{reward} {dist}")
+		# print(f"{reward} {dist}")
 
 		reward -= self.badx + self.bady + self.badz
 

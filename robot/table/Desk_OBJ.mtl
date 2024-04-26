@@ -2,25 +2,25 @@
 
 newmtl Top
 Kd 0.80000001192093 0.80000001192093 0.80000001192093
-map_Kd D:\Modelling\Desk\Top Texture.jpg
+map_Kd Textures/Top Texture.jpg
 Ks 1.00000000000000 1.00000000000000 1.00000000000000
-map_Ks D:\Modelling\Desk\Top Spec.jpg
+map_Ks Textures/Top Spec.jpg
 Ns 100
 illum 7
 
 newmtl legs
 Kd 1.00000000000000 1.00000000000000 1.00000000000000
-map_Kd D:\Modelling\Desk\Legs Texture.jpg
+map_Kd Textures/Legs Texture.jpg
 Ks 1.00000000000000 1.00000000000000 1.00000000000000
-map_Ks D:\Modelling\Desk\Legs Spec.jpg
+map_Ks Textures/Legs Spec.jpg
 Ns 100
 illum 7
 
 newmtl Under
 Kd 0.80000001192093 0.80000001192093 0.80000001192093
-map_Kd Under Texture.jpg
+map_Kd Textures/Under Texture.jpg
 Ks 1.00000000000000 1.00000000000000 1.00000000000000
-map_Ks Under Spec.jpg
+map_Ks Textures/Under Spec.jpg
 Ns 100
 illum 7
 

@@ -40,7 +40,7 @@ env = VecNormalize(env, norm_reward=True) # when training norm_reward = True
 # use in stable_baselines3
 # parameter env is the training environment
 
-timeStep = 20480 # decide the length of the training.
+timeStep = 20480*2 # decide the length of the training.
 model = PPO("MlpPolicy", env, verbose=1)
 model.learn(timeStep)
 
